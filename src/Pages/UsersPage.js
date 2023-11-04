@@ -10,7 +10,7 @@ export function UsersPage() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <ul>
