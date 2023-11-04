@@ -1,34 +1,15 @@
-import { Component } from "react";
-import { usersData } from "data/users";
-import { Button } from "./Button/Button";
-import { UsersList } from "./UsersList/UsersList";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./Layout/Layout";
+import { HomePage } from "Pages/HomePage";
+import { UsersPage } from "Pages/UsersPage";
 
-export class App extends Component {
-  state = {
-    users: usersData,
-    isListShow: false,
-  }
-
-  showList = () => {
-    this.setState({
-      isListShow: true,
-    })
-  }
-
-  deleteUser = (idUser) => {
-    this.setState((prevState) => ({
-        users: prevState.users.filter(({id}) => idUser !== id ),
-      })
+export function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path="users" element={<UsersPage/>} />
+            </Route>
+        </Routes>
     )
-  }
-
-  render() {
-    const { users, isListShow } = this.state;
-
-    return <>
-      {isListShow ? <UsersList users={users} handleDelete={ this.deleteUser} /> :
-        <Button text="Show list of users" clickHandle={this.showList} />}
-    </>
-   
-  }
 }
