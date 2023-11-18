@@ -13,12 +13,15 @@ export function UsersPage() {
   }, [dispatch]);
 
   return (
-    <ul>
-      {users.map(({ id, name }) => (
-        <li key={id}>
-          <Link to={id}>{name}</Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {users.map(({ id, name }) => (
+          <li key={id}>
+            <Link to={id}>{name}</Link>
+          </li>
+        ))}
+      </ul>
+      <Link to="add">Add user</Link>
+    </>
   );
 }

@@ -4,18 +4,34 @@ import { useParams } from 'react-router-dom';
 import { getUserDetailsById, removeUser } from 'redux/users/operations';
 import { selectUser } from '../redux/users/selectors';
 import { Modal } from '../components/Modal/Modal';
+import { useNavigate } from 'react-router-dom/dist';
 
 export function UserDetailsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
+  const navigate = useNavigate();
+
   const { userId } = useParams();
 
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const handleDelete = () => {
+    setModalOpen(true);
+  };
+
+  const handleClickNo = () => {
+    setModalOpen(false);
+  };
+
+  const handleClickYes = () => {
+    dispatch(removeUser(userId));
+    navigate('/users');
+  };
+
   useEffect(() => {
     dispatch(getUserDetailsById(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return (
     <>
@@ -28,8 +44,15 @@ export function UserDetailsPage() {
             <p>{user.email}</p>
             <p>{user.address}</p>
           </div>
-          <button type="button">Delete</button>
-          {isModalOpen && <Modal />}
+          <button type="button" onClick={handleDelete}>
+            Delete
+          </button>
+          {isModalOpen && (
+            <Modal
+              handleClickNo={handleClickNo}
+              handleClickYes={handleClickYes}
+            />
+          )}
         </>
       )}
     </>

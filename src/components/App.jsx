@@ -3,6 +3,7 @@ import { Layout } from './Layout/Layout';
 import { HomePage } from 'pages/HomePage';
 import { UsersPage } from 'pages/UsersPage';
 import { UserDetailsPage } from 'pages/UserDetailsPage';
+import AddUsersPage from 'pages/AddUsersPage';
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
         <Route index element={<HomePage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="users/:userId" element={<UserDetailsPage />} />
+        <Route path="users/add" element={<AddUsersPage />} />
       </Route>
     </Routes>
   );

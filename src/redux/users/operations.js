@@ -38,3 +38,27 @@ export const removeUser = createAsyncThunk(
     }
   }
 );
+
+export const addUser = createAsyncThunk(
+  'users/addUser',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`users`, userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'users/updateUser',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put(`users`, userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
