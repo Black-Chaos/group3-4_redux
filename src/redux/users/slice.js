@@ -34,6 +34,7 @@ export const usersSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         const idx = state.items.findIndex(item => item.id === payload.id);
         state.items[idx] = payload;
+        state.currentUser = payload;
       })
       .addMatcher(
         isAnyOf(
@@ -45,6 +46,7 @@ export const usersSlice = createSlice({
         ),
         state => {
           state.isLoading = true;
+          state.currentUser = null;
         }
       )
       .addMatcher(

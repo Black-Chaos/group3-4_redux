@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getUserDetailsById, removeUser } from 'redux/users/operations';
 import { selectUser } from '../redux/users/selectors';
 import { Modal } from '../components/Modal/Modal';
@@ -47,6 +47,7 @@ export function UserDetailsPage() {
           <button type="button" onClick={handleDelete}>
             Delete
           </button>
+          <Link to="update">Update user</Link>
           {isModalOpen && (
             <Modal
               handleClickNo={handleClickNo}

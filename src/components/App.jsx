@@ -4,6 +4,7 @@ import { HomePage } from 'pages/HomePage';
 import { UsersPage } from 'pages/UsersPage';
 import { UserDetailsPage } from 'pages/UserDetailsPage';
 import AddUsersPage from 'pages/AddUsersPage';
+import UpdatePage from 'pages/UpdatePage';
 
 export function App() {
   return (
@@ -13,6 +14,7 @@ export function App() {
         <Route path="users" element={<UsersPage />} />
         <Route path="users/:userId" element={<UserDetailsPage />} />
         <Route path="users/add" element={<AddUsersPage />} />
+        <Route path="users/:userId/update" element={<UpdatePage />} />
       </Route>
     </Routes>
   );
